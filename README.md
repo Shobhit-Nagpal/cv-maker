@@ -1,3 +1,9 @@
+# About
+
+This is one of the React projects present in the JavaScript curriculum of The Odin Project. The goal was to be introduced to React by making a useful project to understand how React works.
+
+You can visit the site at: https://shobhit-nagpal.github.io/cv-maker/
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
