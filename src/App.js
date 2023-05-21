@@ -238,6 +238,7 @@ class App extends Component {
     return (
       <div className = "App">
         <h1 id="app-name"><i className="fa-solid fa-file icon"></i>Cv Maker</h1>
+        <h3>Made by <a href='https://github.com/Shobhit-Nagpal/cv-maker' rel='noopener noreferrer' target='_blank'><span id='credit'>Shobhit Nagpal</span></a></h3>
         <div className="details">
           <>
             <General general={general} onEditGeneral = {this.handleGeneralEditing} onSaveGeneral={this.handleGeneralSave} onEditGeneralInput={this.handleGeneralInput}/>

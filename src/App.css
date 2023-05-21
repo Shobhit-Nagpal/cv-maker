@@ -124,3 +124,11 @@ input {
     margin: auto;
     width: 50%;
 }
+
+#credit {
+    color: #03dac5;
+}
+
+a:link, a:visited {
+    color: #03dac5;
+}
