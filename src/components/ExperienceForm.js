@@ -47,13 +47,13 @@ const ExperienceForm = (props) => {
                 <br/>
     
                 <label htmlFor="startDate">Start Date</label> <br/>
-                <input type="date" id="startDate"></input>
+                <input type="month" id="startDate"></input>
     
                 <br/>
                 <br/>
     
                 <label htmlFor="endDate">End Date</label> <br/>
-                <input type="date" id="endDate"></input>
+                <input type="month" id="endDate"></input>
 
                 <br/>
 

@@ -58,13 +58,13 @@ const Experience = (props) => {
                 <br/>
 
                 <label htmlFor="startDate">Start</label>
-                <input type="date" id="startDate" defaultValue={work.startDate}></input>
+                <input type="month" id="startDate" defaultValue={work.startDate}></input>
 
                 <br/>
                 <br/>
 
                 <label htmlFor="endDate">End</label>
-                <input type="date" id="endDate" defaultValue={work.endDate}></input>
+                <input type="month" id="endDate" defaultValue={work.endDate}></input>
 
                 <button onClick={(e) => saveExperience(e,work.id)}>Save</button>
                 </form>
