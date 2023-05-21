@@ -41,19 +41,19 @@ const General = (props) => {
         return (<div>
 
             <form className="form">
-            <label htmlFor="name">Name</label>
+            <label htmlFor="name">Name</label> <br/>
             <input type="text" id="name" defaultValue={general.name} onChange={(e) => updateGeneral(e)}></input>
 
             <br/>
             <br/>
 
-            <label htmlFor="phone">Phone</label>
+            <label htmlFor="phone">Phone</label> <br/>
             <input type="number" id="phone" defaultValue={general.phone} min="10" max="10" onChange={(e) => updateGeneral(e)}></input>
 
             <br/>
             <br/>
 
-            <label htmlFor="email">Email</label>
+            <label htmlFor="email">Email</label> <br/>
             <input type="email" id="email" defaultValue={general.email} onChange={(e) => updateGeneral(e)}></input>
 
             <br/>

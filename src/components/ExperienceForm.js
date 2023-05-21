@@ -34,26 +34,28 @@ const ExperienceForm = (props) => {
         return (<div>
 
             <form className="form">
-                <label htmlFor="company">Company</label>
+                <label htmlFor="company">Company</label> <br/>
                 <input type="text" id="company"></input>
     
                 <br/>
                 <br/>
     
-                <label htmlFor="position">Position</label>
+                <label htmlFor="position">Position</label> <br/>
                 <input type="text" id="position"></input>
     
                 <br/>
                 <br/>
     
-                <label htmlFor="startDate">Start Date</label>
+                <label htmlFor="startDate">Start Date</label> <br/>
                 <input type="date" id="startDate"></input>
     
                 <br/>
                 <br/>
     
-                <label htmlFor="endDate">End Date</label>
+                <label htmlFor="endDate">End Date</label> <br/>
                 <input type="date" id="endDate"></input>
+
+                <br/>
 
                 <button onClick={(e) => {saveExperience(e);}}>Save</button>
                 <button onClick={(e) => {cancelForm(e);}}>Cancel</button>

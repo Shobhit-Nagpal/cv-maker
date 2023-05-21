@@ -105,7 +105,7 @@ label {
 }
 
 input {
-    width: 100%;
+    width: 50%;
     height: 30px;
     font-size: 20px;
     padding: 15px;
@@ -114,6 +114,7 @@ input {
     color: #ffffff;
     margin: 10px;
     color-scheme: dark;
+    text-align: center;
 }
 
 .work, .education {

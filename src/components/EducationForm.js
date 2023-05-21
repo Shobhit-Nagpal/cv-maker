@@ -36,26 +36,28 @@ const EducationForm = (props) => {
     if (addEdu) {
         return(<div>
             <form className="form">
-                <label htmlFor="school">School</label>
+                <label htmlFor="school">School</label> <br/>
                 <input type="text" id="school"></input>
 
                 <br/>
                 <br/>
 
-                <label htmlFor="course">Course</label>
+                <label htmlFor="course">Course</label> <br/>
                 <input type="text" id="course"></input>
 
                 <br/>
                 <br/>
 
-                <label htmlFor="start">Start</label>
+                <label htmlFor="start">Start</label> <br/>
                 <input type="month" id="start"></input>
 
                 <br/>
                 <br/>
 
-                <label htmlFor="end">End</label>
+                <label htmlFor="end">End</label> <br/>
                 <input type="month" id="end"></input>
+
+                <br/>
 
                 <button onClick={(e) => saveEducation(e)}>Save</button>
                 <button onClick={(e) => cancelForm(e)}>Cancel</button>
