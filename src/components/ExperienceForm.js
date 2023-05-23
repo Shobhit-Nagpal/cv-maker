@@ -1,6 +1,4 @@
 import React from "react";
-import { v4 as uuidv4 } from 'uuid';
-
 
 const ExperienceForm = (props) => {
 
@@ -24,7 +22,6 @@ const ExperienceForm = (props) => {
             position: position,
             startDate: startDate,
             endDate: endDate,
-            id:uuidv4()
         }
 
         onSaveExperience(exp);

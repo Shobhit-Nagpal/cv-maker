@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import General from './components/General';
 import Education from './components/Education';
@@ -7,108 +7,70 @@ import ExperienceForm from './components/ExperienceForm';
 import EducationForm from './components/EducationForm';
 import './App.css';
 
-class App extends Component {
+const App = () => {
 
-  constructor() {
-    super();
+    const [general, setGeneral] = useState({name: 'Cool Person',
+                                            phone: '1234567890',
+                                            email: 'coolperson@gmail.com',
+                                            isEditing: false});
 
-    this.state = {
+    const [experience, setExperience] = useState({company: '',
+                                                  position: '',
+                                                  startDate: '',
+                                                  endDate: '',
+                                                  id: uuidv4(),
+                                                  isEditing: false});
 
-      general: {
+    const [education, setEducation] = useState({school: '',
+                                                course: '',
+                                                start: '',
+                                                end : '',
+                                                id: uuidv4(),
+                                                isEditing: false});
 
-        name: 'Cool Person',
-        phone: '1234567890',
-        email: 'coolperson@gmail.com',
-        isEditing: false
 
-      },
+    const [workExp, setWorkExp] = useState([]);
 
-      experience: {
-        company: '',
-        position: '',
-        startDate: '',
-        endDate: '',
-        id: uuidv4(),
-        isEditing: false
-      },
+    const [pastEducation, setPastEducation] = useState([]);
 
-      education: {
-        school: '',
-        course: '',
-        start: '',
-        end : '',
-        id: uuidv4(),
-        isEditing: false
-      },
+    const [experienceForm, setExperienceForm] = useState(false);
 
-      workExp: [],
-      pastEducation: [],
-
-      experienceForm: false,
-      educationForm: false
-
-    }
-  }
+    const [educationForm, setEducationForm] = useState(false);
 
   //General Info Handler Functions
 
-  handleGeneralEditing = () => {
-   this.setState ( {
-    general: {
-      ...this.state.general,
-      isEditing: true
-    }
-   } )
+  const handleGeneralEditing = () => {
+   setGeneral({...general, isEditing: true});
   };
 
-  handleGeneralSave = () => {
-    this.setState ( {
-      general: {
-        ...this.state.general,
-        isEditing: false
-      }
-    } )
+  const handleGeneralSave = () => {
+    setGeneral({...general, isEditing: false});
   };
 
-  handleGeneralInput = (updatedGeneral) => {
-
-    this.setState( {
-      general: {...updatedGeneral}
-    } )
-
+  const handleGeneralInput = (updatedGeneral) => {
+    setGeneral({...updatedGeneral});
   };
 
   //Experience Info Handler Functions
 
-  handleExperienceForm = () => {
-    
-    this.setState ({
-      ...this.state,
-      experienceForm: true
-    })
+  const handleExperienceForm = () => {
+    setExperienceForm(true);
   };
 
-  handleCancelExperience = () => {
-    this.setState({
-      ...this.state,
-      experienceForm: false
-    })
+  const handleCancelExperience = () => {
+    setExperienceForm(false);
   };
 
 
-  handleSaveExperience = (exp) => {
-    this.setState( {
-      ...this.state,
-      id:uuidv4(),
-      workExp: this.state.workExp.concat(exp),
-      experienceForm: false
-      
-    } )
+  const handleSaveExperience = (exp) => {
+    setExperience({...experience, id: uuidv4()});
+    setWorkExp(workExp.concat(exp));
+    setExperienceForm(false);
   }
 
-  handleEditExperience = (id) => {
+  const handleEditExperience = (id) => {
 
-    const editedWorkExp = this.state.workExp.map((exp) => {
+    const editedWorkExp = workExp.map((exp) => {
       if (exp.id === id) {
         exp.isEditing = true;
       }
@@ -116,15 +78,12 @@ class App extends Component {
       return exp;
     });
 
-    this.setState( {
-      ...this.state,
-      id: uuidv4(),
-      workExp: editedWorkExp
-    } );
+    setExperience({...experience, id: uuidv4()});
+    setWorkExp(editedWorkExp);
 
   };
 
-  handleSaveEditExp = (id, editedWorkExp) => {
+  const handleSaveEditExp = (id, editedWorkExp) => {
 
     const updatedWorkExp = editedWorkExp.map((exp) => {
       if (exp.id === id) {
@@ -134,106 +93,74 @@ class App extends Component {
       return exp
     });
 
-    this.setState( {
-      ...this.state,
-      id:uuidv4(),
-      workExp: updatedWorkExp
-    } )
+    setExperience({...experience, id: uuidv4()});
+    setWorkExp(updatedWorkExp);
 
   };
 
-  handleRemoveExp = (id) => {
+  const handleRemoveExp = (id) => {
 
-    const updatedWorkExp = this.state.workExp.filter((exp) => exp.id !== id);
+    const updatedWorkExp = workExp.filter((exp) => exp.id !== id);
 
-    this.setState({
-      ...this.state,
-      workExp: updatedWorkExp,
-      id:uuidv4()
-    })
+    setExperience({...experience, id: uuidv4()});
+    setWorkExp(updatedWorkExp);
 
 
   }
 
   //Education Info Handler Functions
-  handleEducationForm = () => {
-    this.setState({
-      ...this.state,
-      educationForm:true
-    });
+  const handleEducationForm = () => {
+    setEducationForm(true);
   };
 
-  handleCancelEducation = () => {
-    this.setState({
-      ...this.state,
-      educationForm: false
-    });
+  const handleCancelEducation = () => {
+    setEducationForm(false);
   };
 
-  handleSaveEducation = (edu) => {
+  const handleSaveEducation = (edu) => {
 
-    this.setState({
-      ...this.state,
-      id: uuidv4(),
-      pastEducation: this.state.pastEducation.concat(edu),
-      educationForm: false
-    })
+    setEducation({...education, id: uuidv4()});
+    setPastEducation(pastEducation.concat(edu));
+    setEducationForm(false);
 
   };
 
-  handleEditEducation = (id) => {
+  const handleEditEducation = (id) => {
 
-    const editedPastEdu = this.state.pastEducation.map((education) => {
-      if (education.id === id) {
-        education.isEditing = true;
+    const editedPastEdu = pastEducation.map((edu) => {
+      if (edu.id === id) {
+        edu.isEditing = true;
       }
 
-      return education;
+      return edu;
     });
 
-    this.setState({
-      ...this.state,
-      id: uuidv4(),
-      pastEducation: editedPastEdu
-
-    });
+    setEducation({...education, id: uuidv4()});
+    setPastEducation(editedPastEdu);
   };
 
-  handleSaveEditEdu = (id, editedPastEdu) => {
+  const handleSaveEditEdu = (id, editedPastEdu) => {
 
-    const updatedPastEdu = editedPastEdu.map((education) => {
-      if (education.id === id) {
-        education.isEditing = false;
+    const updatedPastEdu = editedPastEdu.map((edu) => {
+      if (edu.id === id) {
+        edu.isEditing = false;
       }
-      return education;
+      return edu;
     });
 
-    this.setState({
-      ...this.state,
-      id:uuidv4(),
-      pastEducation: updatedPastEdu
-    });
-
-    console.log(this.state);
+    setEducation({...education, id: uuidv4()});
+    setPastEducation(updatedPastEdu);
 
   }
 
-  handleRemoveEdu = (id) => {
+  const handleRemoveEdu = (id) => {
 
-    const updatedPastEdu = this.state.pastEducation.filter((education) => education.id !== id);
+    const updatedPastEdu = pastEducation.filter((edu) => edu.id !== id);
 
-    this.setState({
-      ...this.state,
-      pastEducation: updatedPastEdu,
-      id: uuidv4()
-    });
+    setEducation({...education, id: uuidv4()});
+    setPastEducation(updatedPastEdu);
 
   }
-
-
-  render() {
-
-    const { general, experience, workExp, education, pastEducation, experienceForm, educationForm } = this.state;
 
     return (
       <div className = "App">
@@ -241,24 +168,23 @@ class App extends Component {
         <h3>Made by <a href='https://github.com/Shobhit-Nagpal/cv-maker' rel='noopener noreferrer' target='_blank'><span id='credit'>Shobhit Nagpal</span></a></h3>
         <div className="details">
           <>
-            <General general={general} onEditGeneral = {this.handleGeneralEditing} onSaveGeneral={this.handleGeneralSave} onEditGeneralInput={this.handleGeneralInput}/>
+            <General general={general} onEditGeneral = {handleGeneralEditing} onSaveGeneral={handleGeneralSave} onEditGeneralInput={handleGeneralInput}/>
           </>
           <div className="exp-edu">
             <div className="exp">
-              <h1>Experience <button onClick={this.handleExperienceForm}>Add</button></h1>
-              <Experience experience={experience}  workExp={workExp} onEditExperience={this.handleEditExperience} onSaveEditExp={this.handleSaveEditExp} onRemoveExp={this.handleRemoveExp}/>
-              <ExperienceForm experience={experience} addExp={experienceForm} onCancelForm={this.handleCancelExperience} onSaveExperience={this.handleSaveExperience}/>
+              <h1>Experience <button onClick={handleExperienceForm}>Add</button></h1>
+              <Experience experience={experience}  workExp={workExp} onEditExperience={handleEditExperience} onSaveEditExp={handleSaveEditExp} onRemoveExp={handleRemoveExp}/>
+              <ExperienceForm experience={experience} addExp={experienceForm} onCancelForm={handleCancelExperience} onSaveExperience={handleSaveExperience}/>
             </div>
             <div className="edu">
-              <h1>Education <button onClick={this.handleEducationForm}>Add</button></h1>
-              <Education education={education} pastEducation={pastEducation} onEditEducation={this.handleEditEducation} onSaveEditEdu={this.handleSaveEditEdu} onRemoveEdu={this.handleRemoveEdu}/>
-              <EducationForm education={education} addEdu={educationForm} onCancelForm={this.handleCancelEducation} onSaveEducation={this.handleSaveEducation}/>
+              <h1>Education <button onClick={handleEducationForm}>Add</button></h1>
+              <Education education={education} pastEducation={pastEducation} onEditEducation={handleEditEducation} onSaveEditEdu={handleSaveEditEdu} onRemoveEdu={handleRemoveEdu}/>
+              <EducationForm education={education} addEdu={educationForm} onCancelForm={handleCancelEducation} onSaveEducation={handleSaveEducation}/>
             </div>
           </div>
         </div>
       </div>
     );
-  }
 }
 
 export default App;
